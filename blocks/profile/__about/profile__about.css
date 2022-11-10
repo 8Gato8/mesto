@@ -5,3 +5,15 @@
   line-height: 1.22;
   grid-area: about;
 }
+
+@media (max-width: 768px) {
+  .profile__about {
+    text-align: center;
+  }
+}
+
+@media (max-width: 398px) {
+  .profile__about {
+    font-size: 14px;
+  }
+}

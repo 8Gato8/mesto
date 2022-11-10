@@ -2,6 +2,18 @@
   display: grid;
   grid-template-areas:
     'name edit-button'
-    'about .';
-  gap: 16px;
+    'about about';
+  gap: 17px;
+}
+
+@media (max-width: 768px) {
+  .profile__info {
+    margin-bottom: 36px;
+  }
+}
+
+@media (max-width: 398px) {
+  .profile__info {
+    gap: 13px;
+  }
 }

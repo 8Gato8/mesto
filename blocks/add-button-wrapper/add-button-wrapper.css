@@ -1,0 +1,21 @@
+.add-button-wrapper {
+  margin: 0 0 0 auto;
+  box-sizing: border-box;
+  width: 150px;
+  height: 50px;
+  border: 2px solid #FFFFFF;
+  border-radius: 2px;
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .add-button-wrapper {
+    margin: 0;
+  }
+}
+
+@media (max-width: 398px) {
+  .add-button-wrapper {
+    width: 100%;
+  }
+}
