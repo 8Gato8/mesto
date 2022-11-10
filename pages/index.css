@@ -7,3 +7,7 @@
 
 @import url(../blocks/page/page.css);
 @import url(../blocks/page/__container/page__container.css);
+
+/*header*/
+
+@import url(../blocks/page/__header/page__header.css);
