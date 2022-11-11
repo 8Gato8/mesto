@@ -2,6 +2,8 @@
   border: 0;
   padding: 0;
   background-color: transparent;
+  align-self: center;
+  justify-self: center;
   cursor: pointer;
   transition: opacity .2s linear;
 }
