@@ -1,19 +1,19 @@
-.profile__about {
+.profile__job {
   margin: 0;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.22;
-  grid-area: about;
+  grid-area: job;
 }
 
 @media (max-width: 768px) {
-  .profile__about {
+  .profile__job {
     text-align: center;
   }
 }
 
 @media (max-width: 398px) {
-  .profile__about {
+  .profile__job {
     font-size: 14px;
   }
 }

@@ -12,16 +12,16 @@ let formElement = popup.querySelector('.form');
 
 let closeButton = formElement.querySelector('.form__close-button');
 
-let profileOwnerName = formElement.querySelector('.form__profile-owner-name');
-let profileOwnerOccupation = formElement.querySelector('.form__profile-owner-occupation');
+let profileInputName = formElement.querySelector('.form__input-name');
+let profileInputJob = formElement.querySelector('.form__input-job');
 
 
 let profileName = pageProfile.querySelector('.profile__name');
-let profileAbout = pageProfile.querySelector('.profile__about');
+let profileJob = pageProfile.querySelector('.profile__job');
 
 
-profileOwnerName.value = profileName.textContent;
-profileOwnerOccupation.value = profileAbout.textContent;
+profileInputName.value = profileName.textContent;
+profileInputJob.value = profileJob.textContent;
 
 /*Функции*/
 
@@ -31,15 +31,15 @@ function getPopupVisible() {
 
 function getPopupInvisible() {
   popup.classList.remove('page__popup_opened');
-  profileOwnerName.value = profileName.textContent;
-  profileOwnerOccupation.value = profileAbout.textContent;
+  profileInputName.value = profileName.textContent;
+  profileInputJob.value = profileJob.textContent;
 }
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
 
-  profileName.textContent = profileOwnerName.value;
-  profileAbout.textContent = profileOwnerOccupation.value;
+  profileName.textContent = profileInputName.value;
+  profileJob.textContent = profileInputJob.value;
 
   getPopupInvisible();
 }

@@ -2,7 +2,7 @@
   display: grid;
   grid-template-areas:
     'name edit-button'
-    'about about';
+    'job job';
   gap: 17px;
 }
 
