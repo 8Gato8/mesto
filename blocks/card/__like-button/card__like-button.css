@@ -1,7 +1,9 @@
 .card__like-button {
+  width: 22px;
+  height: 22px;
   border: 0;
   padding: 0;
-  background-color: transparent;
+  background: url('../../../images/like-button.svg') 50% / auto auto no-repeat;
   align-self: center;
   justify-self: center;
   cursor: pointer;
