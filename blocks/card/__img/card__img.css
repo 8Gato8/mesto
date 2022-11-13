@@ -2,5 +2,5 @@
   width: 100%;
   object-fit: cover;
   grid-column: 1 / 3;
-  border-radius: inherit;
+  border-radius: 10px 10px 0 0;
 }

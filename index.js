@@ -44,7 +44,6 @@ function formSubmitHandler(evt) {
   getPopupInvisible();
 }
 
-
 /*Слушатели событий*/
 
 editButton.addEventListener('click', getPopupVisible);
