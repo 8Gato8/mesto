@@ -34,7 +34,7 @@
 
           <li class="cards__card card">
             <img class="card__img" src="./images/Карачаевск.jpg" alt="Карачаевск">
-            <h2 class="card__title">Карачаевск</h2>
+            <h2 class="card__title title">Карачаевск</h2>
             <button class="card__like-button">
               <img class="card__like-button-img" src="./images/like-button.svg" alt="Кнопка 'поставить лайк'">
             </button>
@@ -42,7 +42,7 @@
 
           <li class="cards__card card">
             <img class="card__img" src="./images/Гора-Эльбрус.jpg" alt="Гора Эльбрус">
-            <h2 class="card__title">Гора Эльбрус</h2>
+            <h2 class="card__title title">Гора Эльбрус</h2>
             <button class="card__like-button">
               <img class="card__like-button-img" src="./images/like-button.svg" alt="Кнопка 'поставить лайк'">
             </button>
@@ -50,7 +50,7 @@
 
           <li class="cards__card card">
             <img class="card__img" src="./images/Домбай.jpg" alt="Домбай">
-            <h2 class="card__title">Домбай</h2>
+            <h2 class="card__title title">Домбай</h2>
             <button class="card__like-button">
               <img class="card__like-button-img" src="./images/like-button.svg" alt="Кнопка 'поставить лайк'">
             </button>
@@ -58,7 +58,7 @@
 
           <li class="cards__card card">
             <img class="card__img" src="./images/Гора-Эльбрус.jpg" alt="Гора Эльбрус">
-            <h2 class="card__title">Гора Эльбрус</h2>
+            <h2 class="card__title title">Гора Эльбрус</h2>
             <button class="card__like-button">
               <img class="card__like-button-img" src="./images/like-button.svg" alt="Кнопка 'поставить лайк'">
             </button>
@@ -66,7 +66,7 @@
 
           <li class="cards__card card">
             <img class="card__img" src="./images/Домбай.jpg" alt="Домбай">
-            <h2 class="card__title">Домбай</h2>
+            <h2 class="card__title title">Домбай</h2>
             <button class="card__like-button">
               <img class="card__like-button-img" src="./images/like-button.svg" alt="Кнопка 'поставить лайк'">
             </button>
@@ -74,7 +74,7 @@
 
           <li class="cards__card card">
             <img class="card__img" src="./images/Карачаевск.jpg" alt="Карачаево-Черкесия">
-            <h2 class="card__title">Карачаево-Черкесия</h2>
+            <h2 class="card__title title">Карачаево-Черкесия</h2>
             <button class="card__like-button">
               <img class="card__like-button-img" src="./images/like-button.svg" alt="Кнопка 'поставить лайк'">
             </button>
@@ -90,6 +90,24 @@
       <p class="footer__copyright">&COPY; 2022 Mesto Russia</p>
     </footer>
   </div>
+
+  <section class="popup page__popup page__popup_closed">
+
+    <div class="popup__container">
+
+      <form class="popup__form form">
+        <h2 class="form__title title">Редактировать профиль</h2>
+        <fieldset class="form__profile-info">
+          <input class="form__profile-owner-name form__input" placeholder="Имя" type="text" name="profile-owner-name" required>
+          <input class="form__profile-owner-occupation form__input" placeholder="О себе" type="text" name="profile-owner-occupation" required>
+        </fieldset>
+        <button class="form__submit-button" type="submit">Сохранить</button>
+        <img class="form__close-button" src="./images/close-button.svg" alt="Закрыть форму">
+      </form>
+
+    </div>
+
+  </section>
 
   <script src="./index.js"></script>
 </body>
