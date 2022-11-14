@@ -20,5 +20,6 @@
 @media (max-width: 398px) {
   .form__submit-button {
     font-size: 14px;
+    min-height: 46px;
   }
 }

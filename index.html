@@ -19,13 +19,19 @@
     <main class="content page__content">
 
       <section class="profile page__profile">
+
         <img class="profile__avatar" src="./images/profile__avatar.jpg" alt="Аватар профиля">
+
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__job">Исследователь океана</p>
-          <button class="profile__edit-button"><img class="profile__edit-button-img" src="./images/edit-button.svg" alt="Кнопка редактирования профиля"></button>
+          <button class="profile__edit-button" type="button">
+          </button>
         </div>
-        <button class="profile__add-button"><img class="profile__add-button-img" src="./images/add-button.svg" alt="Добавить карточку с фотографией"></button>
+
+        <button class="profile__add-button" type="button">
+        </button>
+
       </section>
 
       <section class="cards page__cards">
@@ -35,42 +41,42 @@
           <li class="cards__card card">
             <img class="card__img" src="./images/Карачаевск.jpg" alt="Карачаевск">
             <h2 class="card__title title">Карачаевск</h2>
-            <button class="card__like-button">
+            <button class="card__like-button" type="button">
             </button>
           </li>
 
           <li class="cards__card card">
             <img class="card__img" src="./images/Гора-Эльбрус.jpg" alt="Гора Эльбрус">
             <h2 class="card__title title">Гора Эльбрус</h2>
-            <button class="card__like-button">
+            <button class="card__like-button" type="button">
             </button>
           </li>
 
           <li class="cards__card card">
             <img class="card__img" src="./images/Домбай.jpg" alt="Домбай">
             <h2 class="card__title title">Домбай</h2>
-            <button class="card__like-button">
+            <button class="card__like-button" type="button">
             </button>
           </li>
 
           <li class="cards__card card">
             <img class="card__img" src="./images/Гора-Эльбрус.jpg" alt="Гора Эльбрус">
             <h2 class="card__title title">Гора Эльбрус</h2>
-            <button class="card__like-button">
+            <button class="card__like-button" type="button">
             </button>
           </li>
 
           <li class="cards__card card">
             <img class="card__img" src="./images/Домбай.jpg" alt="Домбай">
             <h2 class="card__title title">Домбай</h2>
-            <button class="card__like-button">
+            <button class="card__like-button" type="button">
             </button>
           </li>
 
           <li class="cards__card card">
             <img class="card__img" src="./images/Карачаевск.jpg" alt="Карачаево-Черкесия">
             <h2 class="card__title title">Карачаево-Черкесия</h2>
-            <button class="card__like-button">
+            <button class="card__like-button" type="button">
             </button>
           </li>
 
@@ -85,25 +91,26 @@
     </footer>
   </div>
 
-  <section class="popup page__popup">
+  <section class="popup">
 
     <div class="popup__container">
 
-      <form class="popup__form form">
+      <form class="popup__form form" name="popup-form">
         <h2 class="form__title title">Редактировать профиль</h2>
         <fieldset class="form__profile-info">
-          <input class="form__input-name form__input" placeholder="Имя" type="text" name="profile-owner-name" required>
-          <input class="form__input-job form__input" placeholder="О себе" type="text" name="profile-owner-occupation" required>
+          <input id="input-name" class="form__input" placeholder="Имя" type="text" name="profile-owner-name" required>
+          <input id="input-job" class="form__input" placeholder="О себе" type="text" name="profile-owner-occupation" required>
         </fieldset>
         <button class="form__submit-button" type="submit">Сохранить</button>
-        <img class="form__close-button" src="./images/close-button.svg" alt="Закрыть форму">
+        <button class="form__close-button" type="button"></button>
       </form>
 
     </div>
 
   </section>
 
-  <script src="./index.js"></script>
+  <script src="./scripts/index.js"></script>
+
 </body>
 
 </html>

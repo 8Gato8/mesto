@@ -7,7 +7,6 @@
 
 @import url(../blocks/page/page.css);
 @import url(../blocks/page/__container/page__container.css);
-@import url(../blocks/title/title.css);
 
 /*header*/
 
@@ -28,7 +27,6 @@
 @import url(../blocks/profile/__job/profile__job.css);
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
-@import url(../blocks/profile/__add-button-img/profile__add-button-img.css);
 
 /*cards and card*/
 
@@ -51,15 +49,12 @@
 /*popup and form*/
 
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/page/__popup/page__popup.css);
-@import url(../blocks/page/__popup/_opened/page__popup_opened.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/form/form.css);
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__profile-info/form__profile-info.css);
-@import url(../blocks/form/__input-name/form__input-name.css);
-@import url(../blocks/form/__input-job/form__input-job.css);
 @import url(../blocks/form/__submit-button/form__submit-button.css);
 @import url(../blocks/form/__close-button/form__close-button.css);
