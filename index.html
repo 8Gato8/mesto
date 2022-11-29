@@ -37,49 +37,6 @@
       <section class="cards page__cards">
 
         <ul class="cards__list">
-
-          <li class="cards__card card">
-            <img class="card__img" src="./images/Карачаевск.jpg" alt="Карачаевск">
-            <h2 class="card__title title">Карачаевск</h2>
-            <button class="card__like-button" type="button">
-            </button>
-          </li>
-
-          <li class="cards__card card">
-            <img class="card__img" src="./images/Гора-Эльбрус.jpg" alt="Гора Эльбрус">
-            <h2 class="card__title title">Гора Эльбрус</h2>
-            <button class="card__like-button" type="button">
-            </button>
-          </li>
-
-          <li class="cards__card card">
-            <img class="card__img" src="./images/Домбай.jpg" alt="Домбай">
-            <h2 class="card__title title">Домбай</h2>
-            <button class="card__like-button" type="button">
-            </button>
-          </li>
-
-          <li class="cards__card card">
-            <img class="card__img" src="./images/Гора-Эльбрус.jpg" alt="Гора Эльбрус">
-            <h2 class="card__title title">Гора Эльбрус</h2>
-            <button class="card__like-button" type="button">
-            </button>
-          </li>
-
-          <li class="cards__card card">
-            <img class="card__img" src="./images/Домбай.jpg" alt="Домбай">
-            <h2 class="card__title title">Домбай</h2>
-            <button class="card__like-button" type="button">
-            </button>
-          </li>
-
-          <li class="cards__card card">
-            <img class="card__img" src="./images/Карачаевск.jpg" alt="Карачаево-Черкесия">
-            <h2 class="card__title title">Карачаево-Черкесия</h2>
-            <button class="card__like-button" type="button">
-            </button>
-          </li>
-
         </ul>
 
       </section>
@@ -91,23 +48,64 @@
     </footer>
   </div>
 
-  <section class="popup">
+  <section class="popup profile-popup">
 
     <div class="popup__container">
 
       <form class="popup__form form" name="popup-form">
         <h2 class="form__title title">Редактировать профиль</h2>
         <fieldset class="form__profile-info">
-          <input id="input-name" class="form__input" placeholder="Имя" type="text" name="profile-owner-name" required>
-          <input id="input-job" class="form__input" placeholder="О себе" type="text" name="profile-owner-occupation" required>
+          <input id="input-name" class="form__input" placeholder="Имя" type="text" name="name" required>
+          <input id="input-job" class="form__input" placeholder="О себе" type="text" name="job" required>
         </fieldset>
         <button class="form__submit-button" type="submit">Сохранить</button>
-        <button class="form__close-button" type="button"></button>
+        <button class="form__close-button close-button" type="button"></button>
       </form>
 
     </div>
 
   </section>
+
+  <section class="popup add-place-popup">
+    <div class="popup__container">
+
+      <form class="popup__form form" name="popup-form">
+        <h2 class="form__title title">Новое место</h2>
+        <fieldset class="form__profile-info">
+          <input id="input-place-name" class="form__input" placeholder="Название" type="text" name="name" required>
+          <input id="input-place-link" class="form__input" placeholder="Ссылка на картинку" type="text" name="job" required>
+        </fieldset>
+        <button class="form__submit-button" type="submit">Создать</button>
+        <button class="form__close-button close-button" type="button"></button>
+      </form>
+
+    </div>
+  </section>
+
+  <div class="card-review">
+
+    <div class="card-review__container">
+      <img class="card-review__img" src="" alt="">
+      <h2 class="card-review__title"></h2>
+      <button class="card-review__close-button close-button"></button>
+    </div>
+
+  </div>
+
+  <template id="card">
+
+    <li class="cards__card card">
+      <div class="card__img-mask">
+        <img class="card__img" src="" alt="">
+      </div>
+      <h2 class="card__title title"></h2>
+      <button class="card__like-button" type="button">
+      </button>
+      <button class="card__trash-button" type="button">
+      </button>
+    </li>
+
+  </template>
 
   <script src="./scripts/index.js"></script>
 
