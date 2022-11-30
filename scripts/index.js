@@ -108,7 +108,7 @@ const handleAddPlaceFormSubmit = function (evt) {
   evt.target.reset();
 }
 
-/*Event-listeners*/
+/*Global event-listeners*/
 
 profileFormElement.addEventListener('submit', handleProfileFormSubmit);
 addPlaceFormElement.addEventListener('submit', handleAddPlaceFormSubmit);
