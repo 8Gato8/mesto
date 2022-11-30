@@ -120,6 +120,7 @@ const handleAddPlaceFormSubmit = function (evt) {
 
   const newCardElement = createPlaceElement(item);
   cardsListElement.prepend(newCardElement);
+  closePopup(evt);
   evt.target.reset();
 }
 
