@@ -52,21 +52,20 @@
 /*popup and form*/
 
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/_type/_profile/popup_type_profile.css);
+@import url(../blocks/popup/_type/_add-place/popup_type_add-place.css);
+@import url(../blocks/popup/_type/_card-review/popup_type_card-review.css);
 @import url(../blocks/form/form.css);
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__profile-info/form__profile-info.css);
 @import url(../blocks/form/__submit-button/form__submit-button.css);
-@import url(../blocks/form/__close-button/form__close-button.css);
 
 /*card-review*/
 
 @import url(../blocks/card-review/card-review.css);
-@import url(../blocks/card-review/_opened/card-review_opened.css);
-@import url(../blocks/card-review/__container/card-review__container.css);
 @import url(../blocks/card-review/__title/card-review__title.css);
 @import url(../blocks/card-review/__img/card-review__img.css);
-@import url(../blocks/card-review/__close-button/card-review__close-button.css);

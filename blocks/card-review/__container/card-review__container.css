@@ -1,8 +1,0 @@
-.card-review__container {
-  margin: auto;
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  row-gap: 10px;
-  justify-content: space-between;
-}

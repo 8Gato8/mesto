@@ -48,11 +48,11 @@
     </footer>
   </div>
 
-  <section class="popup profile-popup">
+  <div class="popup popup_type_profile">
 
     <div class="popup__container">
 
-      <form class="popup__form form" name="popup-form">
+      <form id="profile-form" class="popup__form form" name="popup-form">
         <h2 class="form__title title">Редактировать профиль</h2>
         <fieldset class="form__profile-info">
           <input id="input-name" class="form__input" placeholder="Имя" type="text" name="name" required>
@@ -64,12 +64,12 @@
 
     </div>
 
-  </section>
+  </div>
 
-  <section class="popup add-place-popup">
+  <div class="popup popup_type_add-place">
     <div class="popup__container">
 
-      <form class="popup__form form" name="popup-form">
+      <form id="add-place-form" class="popup__form form" name="popup-form">
         <h2 class="form__title title">Новое место</h2>
         <fieldset class="form__profile-info">
           <input id="input-place-name" class="form__input" placeholder="Название" type="text" name="name" required>
@@ -80,14 +80,16 @@
       </form>
 
     </div>
-  </section>
+  </div>
 
-  <div class="card-review">
+  <div class="popup popup_type_card-review">
 
-    <div class="card-review__container">
+    <div class="card-review">
+
       <img class="card-review__img" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" alt="#">
       <h2 class="card-review__title"></h2>
       <button class="card-review__close-button close-button"></button>
+
     </div>
 
   </div>
@@ -107,8 +109,7 @@
 
   </template>
 
-  <script src="./scripts/index.js"></script>
-
+  <script type="module" src="./scripts/index.js"></script>
 </body>
 
 </html>
