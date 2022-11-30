@@ -1,9 +1,8 @@
 import { initialCards } from './initial-cards.js';
 
 /*Variables*/
-const page = document.querySelector('.page');
 
-const pageProfile = page.querySelector('.page__profile');
+const page = document.querySelector('.page');
 
 const editButton = page.querySelector('.profile__edit-button');
 const addButton = page.querySelector('.profile__add-button');
@@ -11,7 +10,6 @@ const addButton = page.querySelector('.profile__add-button');
 const profileName = page.querySelector('.profile__name');
 const profileJob = page.querySelector('.profile__job');
 
-const popups = page.querySelectorAll('.popup');
 const profileFormElement = page.querySelector('#profile-form');
 const addPlaceFormElement = page.querySelector('#add-place-form');
 
@@ -30,10 +28,10 @@ const cardReviewPopup = page.querySelector('.popup_type_card-review');
 const cardReviewImg = page.querySelector('.card-review__img');
 const cardReviewTitle = page.querySelector('.card-review__title');
 
-/*Card elements and functions*/
-
 const cardTemplate = page.querySelector('#card').content.querySelector('.card');
 const cardsListElement = page.querySelector('.cards__list');
+
+/*Function's declaration*/
 
 const openPopup = function (popup) {
   popup.classList.add('popup_opened');
@@ -44,9 +42,11 @@ const closePopup = function (evt) {
   eventTarget.closest('.popup').classList.remove('popup_opened');
 }
 
-closeButtons.forEach(function (element) {
-  element.addEventListener('click', closePopup);
-});
+const toggleLikeButton = function (evt) {
+  const eventTarget = evt.target;
+  console.log(eventTarget);
+  eventTarget.classList.toggle('card__like-button_active');
+}
 
 const createPlaceElement = function (item) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -55,31 +55,9 @@ const createPlaceElement = function (item) {
   const likeButton = cardElement.querySelector('.card__like-button');
   const trashButton = cardElement.querySelector('.card__trash-button');
 
-  /* cardsListElement.prepend(cardElement); */
-
   cardElementTitle.textContent = item.name;
   cardElementImg.src = item.link;
   cardElementImg.alt = item.name;
-
-  const toggleLikeButton = function (evt) {
-    const eventTarget = evt.target;
-    console.log(eventTarget);
-    eventTarget.classList.toggle('card__like-button_active');
-  }
-
-  const removePlaceElement = function (evt) {
-    const eventTarget = evt.target;
-    eventTarget.closest('.card').remove();
-  };
-
-  const openCardReview = function (evt) {
-    const eventTarget = evt.target;
-    cardReviewImg.src = eventTarget.src;
-    cardReviewImg.alt = eventTarget.alt;
-    const cardTitle = eventTarget.closest('.card').querySelector('.card__title');
-    cardReviewTitle.textContent = cardTitle.textContent;
-    openPopup(cardReviewPopup);
-  }
 
   likeButton.addEventListener('click', toggleLikeButton);
   trashButton.addEventListener('click', removePlaceElement);
@@ -88,13 +66,19 @@ const createPlaceElement = function (item) {
   return cardElement;
 }
 
-initialCards.forEach(function (item) {
-  const newCardElement = createPlaceElement(item);
-  cardsListElement.prepend(newCardElement);
-});
+const removePlaceElement = function (evt) {
+  const eventTarget = evt.target;
+  eventTarget.closest('.card').remove();
+};
 
-
-/*Popup's functions*/
+const openCardReview = function (evt) {
+  const eventTarget = evt.target;
+  cardReviewImg.src = eventTarget.src;
+  cardReviewImg.alt = eventTarget.alt;
+  const cardTitle = eventTarget.closest('.card').querySelector('.card__title');
+  cardReviewTitle.textContent = cardTitle.textContent;
+  openPopup(cardReviewPopup);
+}
 
 const fillInputFields = function () {
   inputName.value = profileName.textContent;
@@ -126,6 +110,20 @@ const handleAddPlaceFormSubmit = function (evt) {
 
 /*Event-listeners*/
 
+profileFormElement.addEventListener('submit', handleProfileFormSubmit);
+addPlaceFormElement.addEventListener('submit', handleAddPlaceFormSubmit);
+
+/*Cycles*/
+
+initialCards.forEach(function (item) {
+  const newCardElement = createPlaceElement(item);
+  cardsListElement.prepend(newCardElement);
+});
+
+closeButtons.forEach(function (element) {
+  element.addEventListener('click', closePopup);
+});
+
 editButton.addEventListener('click', function () {
   openPopup(profilePopup);
   fillInputFields();
@@ -134,6 +132,3 @@ editButton.addEventListener('click', function () {
 addButton.addEventListener('click', function () {
   openPopup(addPlacePopup);
 });
-
-profileFormElement.addEventListener('submit', handleProfileFormSubmit);
-addPlaceFormElement.addEventListener('submit', handleAddPlaceFormSubmit);
