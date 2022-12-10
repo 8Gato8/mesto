@@ -52,11 +52,11 @@
 
     <div class="popup__container">
 
-      <form id="profile-form" class="popup__form form" name="profile-form">
+      <form id="profile-form" class="popup__form form" name="profile-form" novalidate>
         <h2 class="form__title title">Редактировать профиль</h2>
         <fieldset class="form__profile-info">
-          <input id="input-name" class="form__input" placeholder="Имя" type="text" name="name" required>
-          <input id="input-job" class="form__input" placeholder="О себе" type="text" name="job" required>
+          <input id="input-name" class="form__input" placeholder="Имя" type="text" name="name" required minlength="2" maxlength="40">
+          <input id="input-job" class="form__input" placeholder="О себе" type="text" name="job" required minlength="2" maxlength="200">
         </fieldset>
         <button class="form__submit-button" type="submit">Сохранить</button>
         <button class="form__close-button close-button" type="button"></button>
@@ -69,11 +69,11 @@
   <div class="popup popup_type_add-place">
     <div class="popup__container">
 
-      <form id="add-place-form" class="popup__form form" name="add-place-form">
+      <form id="add-place-form" class="popup__form form" name="add-place-form" novalidate>
         <h2 class="form__title title">Новое место</h2>
         <fieldset class="form__profile-info">
           <input id="input-place-name" class="form__input" placeholder="Название" type="text" name="name" required>
-          <input id="input-place-link" class="form__input" placeholder="Ссылка на картинку" type="text" name="job" required>
+          <input id="input-place-link" class="form__input" placeholder="Ссылка на картинку" type="url" name="job" required>
         </fieldset>
         <button class="form__submit-button" type="submit">Создать</button>
         <button class="form__close-button close-button" type="button"></button>
