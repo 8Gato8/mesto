@@ -39,28 +39,30 @@ const fillInputFields = function () {
   inputJob.value = profileJob.textContent;
 }
 
-const closePopup = function (evt) {
-  const closestPopup = evt.target.closest('.popup');
-  closestPopup.classList.remove('popup_opened');
-}
-
-const setOverlayClickHandler = function (popup) {
-  popup.addEventListener('click', (evt) => {
-    if (evt.target === popup) {
-      closePopup(evt);
-    }
-  });
-
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      popup.classList.remove('popup_opened');
-    }
-  })
+const closePopup = function (popup) {
+  popup.classList.remove('popup_opened');
+  popup.removeEventListener('mousedown', checkOverlayClick);
+  document.removeEventListener('keydown', closeByPressingEscape);
 };
+
+const checkOverlayClick = function (evt) {
+  const openedPopup = document.querySelector('.popup_opened');
+  if (evt.target === openedPopup) {
+    closePopup(openedPopup);
+  }
+};
+
+const closeByPressingEscape = function (evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
 
 const openPopup = function (popup) {
   popup.classList.add('popup_opened');
-  setOverlayClickHandler(popup);
+  popup.addEventListener('mousedown', checkOverlayClick);
+  document.addEventListener('keydown', closeByPressingEscape);
 }
 
 const toggleLikeButton = function (evt) {
@@ -101,11 +103,11 @@ const openCardReview = function (evt) {
   openPopup(cardReviewPopup);
 }
 
-const handleProfileFormSubmit = function (evt) {
+const handleProfileFormSubmit = function () {
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
 
-  closePopup(evt);
+  closePopup(profilePopup);
 }
 
 const handleAddPlaceFormSubmit = function (evt) {
@@ -116,7 +118,7 @@ const handleAddPlaceFormSubmit = function (evt) {
 
   const newCardElement = createPlaceElement(item);
   cardsListElement.prepend(newCardElement);
-  closePopup(evt);
+  closePopup(addPlacePopup);
   evt.target.reset();
 }
 
@@ -132,8 +134,11 @@ initialCards.forEach(function (element) {
   cardsListElement.prepend(newCardElement);
 });
 
-closeButtons.forEach(function (element) {
-  element.addEventListener('click', closePopup);
+closeButtons.forEach(function (closeButton) {
+  closeButton.addEventListener('click', () => {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  });
 });
 
 editButton.addEventListener('click', function () {
