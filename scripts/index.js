@@ -1,4 +1,5 @@
 import { initialCards } from './initial-cards.js';
+import * as validate from './validate.js';
 
 /*Variables*/
 
@@ -33,13 +34,33 @@ const cardsListElement = page.querySelector('.cards__list');
 
 /*Function's declaration*/
 
-const openPopup = function (popup) {
-  popup.classList.add('popup_opened');
+const fillInputFields = function () {
+  inputName.value = profileName.textContent;
+  inputJob.value = profileJob.textContent;
 }
 
 const closePopup = function (evt) {
-  const eventTarget = evt.target;
-  eventTarget.closest('.popup').classList.remove('popup_opened');
+  const closestPopup = evt.target.closest('.popup');
+  closestPopup.classList.remove('popup_opened');
+}
+
+const setOverlayClickHandler = function (popup) {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target === popup) {
+      closePopup(evt);
+    }
+  });
+
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      popup.classList.remove('popup_opened');
+    }
+  })
+};
+
+const openPopup = function (popup) {
+  popup.classList.add('popup_opened');
+  setOverlayClickHandler(popup);
 }
 
 const toggleLikeButton = function (evt) {
@@ -80,14 +101,7 @@ const openCardReview = function (evt) {
   openPopup(cardReviewPopup);
 }
 
-const fillInputFields = function () {
-  inputName.value = profileName.textContent;
-  inputJob.value = profileJob.textContent;
-}
-
 const handleProfileFormSubmit = function (evt) {
-  evt.preventDefault();
-
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
 
@@ -95,8 +109,6 @@ const handleProfileFormSubmit = function (evt) {
 }
 
 const handleAddPlaceFormSubmit = function (evt) {
-  evt.preventDefault();
-
   const item = {
     name: inputPlaceName.value,
     link: inputPlaceLink.value
@@ -115,8 +127,8 @@ addPlaceFormElement.addEventListener('submit', handleAddPlaceFormSubmit);
 
 /*Cycles*/
 
-initialCards.forEach(function (item) {
-  const newCardElement = createPlaceElement(item);
+initialCards.forEach(function (element) {
+  const newCardElement = createPlaceElement(element);
   cardsListElement.prepend(newCardElement);
 });
 
@@ -126,9 +138,13 @@ closeButtons.forEach(function (element) {
 
 editButton.addEventListener('click', function () {
   openPopup(profilePopup);
-  fillInputFields();
 });
 
 addButton.addEventListener('click', function () {
   openPopup(addPlacePopup);
 });
+
+/*Validation*/
+
+fillInputFields();
+validate.enableValidation(validate.validationSettings);
