@@ -14,8 +14,6 @@ const profileJob = page.querySelector('.profile__job');
 const profileFormElement = page.querySelector('#profile-form');
 const addPlaceFormElement = page.querySelector('#add-place-form');
 
-const closeButtons = page.querySelectorAll('.close-button');
-
 const inputName = page.querySelector('#input-name');
 const inputJob = page.querySelector('#input-job');
 
@@ -25,6 +23,7 @@ const inputPlaceLink = page.querySelector('#input-place-link');
 const profilePopup = page.querySelector('.popup_type_profile');
 const addPlacePopup = page.querySelector('.popup_type_add-place');
 const cardReviewPopup = page.querySelector('.popup_type_card-review');
+const popups = page.querySelectorAll('.popup');
 
 const cardReviewImg = page.querySelector('.card-review__img');
 const cardReviewTitle = page.querySelector('.card-review__title');
@@ -134,18 +133,27 @@ initialCards.forEach(function (element) {
   cardsListElement.prepend(newCardElement);
 });
 
-closeButtons.forEach(function (closeButton) {
-  closeButton.addEventListener('click', () => {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
+popups.forEach(popup => {
+  popup.addEventListener('mousedown', (evt) => {
+
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+    }
+
+    if (evt.target.classList.contains('close-button')) {
+      closePopup(popup);
+    }
+
   });
 });
 
-editButton.addEventListener('click', function () {
+
+editButton.addEventListener('click', () => {
+  fillInputFields();
   openPopup(profilePopup);
 });
 
-addButton.addEventListener('click', function () {
+addButton.addEventListener('click', () => {
   openPopup(addPlacePopup);
 });
 
