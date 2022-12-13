@@ -40,15 +40,7 @@ const fillInputFields = function () {
 
 const closePopup = function (popup) {
   popup.classList.remove('popup_opened');
-  popup.removeEventListener('mousedown', checkOverlayClick);
   document.removeEventListener('keydown', closeByPressingEscape);
-};
-
-const checkOverlayClick = function (evt) {
-  const openedPopup = document.querySelector('.popup_opened');
-  if (evt.target === openedPopup) {
-    closePopup(openedPopup);
-  }
 };
 
 const closeByPressingEscape = function (evt) {
@@ -60,7 +52,6 @@ const closeByPressingEscape = function (evt) {
 
 const openPopup = function (popup) {
   popup.classList.add('popup_opened');
-  popup.addEventListener('mousedown', checkOverlayClick);
   document.addEventListener('keydown', closeByPressingEscape);
 }
 
