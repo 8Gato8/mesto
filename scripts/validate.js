@@ -59,14 +59,22 @@ export const hasInvalidInput = function (inputList) {
   });
 };
 
+export const disableButtonElement = function (buttonElement, validationSettings) {
+  buttonElement.classList.add(validationSettings.inactiveButtonClass);
+  buttonElement.setAttribute('disabled', true);
+};
+
+export const activateButtonElement = function (buttonElement, validationSettings) {
+  buttonElement.classList.remove(validationSettings.inactiveButtonClass);
+  buttonElement.removeAttribute('disabled', true);
+};
+
 export const toggleButtonState = function (inputList, buttonElement, validationSettings) {
 
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(validationSettings.inactiveButtonClass);
-    buttonElement.setAttribute('disabled', true);
+    disableButtonElement(buttonElement, validationSettings);
   } else {
-    buttonElement.classList.remove(validationSettings.inactiveButtonClass);
-    buttonElement.removeAttribute('disabled');
+    activateButtonElement(buttonElement, validationSettings);
   }
 };
 

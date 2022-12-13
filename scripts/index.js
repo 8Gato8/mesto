@@ -121,6 +121,27 @@ const handleAddPlaceFormSubmit = function (evt) {
   evt.target.reset();
 }
 
+const checkInputsValidity = function (formElement) {
+
+  const inputList = Array.from(formElement.querySelectorAll('.form__input'));
+  const buttonElement = formElement.querySelector('.form__submit-button');
+
+  validate.toggleButtonState(inputList, buttonElement, validate.validationSettings);
+};
+
+const checkFormValidity = function (formElement) {
+
+  const inputList = Array.from(formElement.querySelectorAll('.form__input'));
+  const buttonElement = formElement.querySelector('.form__submit-button');
+
+  if (!(validate.hasInvalidInput(inputList))) {
+    inputList.forEach(inputElement => {
+      validate.hideInputError(formElement, inputElement, validate.validationSettings);
+      validate.activateButtonElement(buttonElement, validate.validationSettings);
+    });
+  }
+}
+
 /*Global event-listeners*/
 
 profileFormElement.addEventListener('submit', handleProfileFormSubmit);
@@ -147,13 +168,14 @@ popups.forEach(popup => {
   });
 });
 
-
 editButton.addEventListener('click', () => {
   fillInputFields();
+  checkFormValidity(profileFormElement);
   openPopup(profilePopup);
 });
 
 addButton.addEventListener('click', () => {
+  checkInputsValidity(addPlaceFormElement);
   openPopup(addPlacePopup);
 });
 
