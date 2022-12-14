@@ -40,10 +40,10 @@ const fillInputFields = function () {
 
 const closePopup = function (popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeByPressingEscape);
+  document.removeEventListener('keydown', handleEscapeKeydown);
 };
 
-const closeByPressingEscape = function (evt) {
+const handleEscapeKeydown = function (evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
@@ -52,7 +52,7 @@ const closeByPressingEscape = function (evt) {
 
 const openPopup = function (popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByPressingEscape);
+  document.addEventListener('keydown', handleEscapeKeydown);
 }
 
 const toggleLikeButton = function (evt) {
@@ -114,16 +114,16 @@ const handleAddPlaceFormSubmit = function (evt) {
 
 const checkInputsValidity = function (formElement) {
 
-  const inputList = Array.from(formElement.querySelectorAll('.form__input'));
-  const buttonElement = formElement.querySelector('.form__submit-button');
+  const inputList = Array.from(formElement.querySelectorAll(validate.validationSettings.inputSelector));
+  const buttonElement = formElement.querySelector(validate.validationSettings.submitButtonSelector);
 
   validate.toggleButtonState(inputList, buttonElement, validate.validationSettings);
 };
 
 const checkFormValidity = function (formElement) {
 
-  const inputList = Array.from(formElement.querySelectorAll('.form__input'));
-  const buttonElement = formElement.querySelector('.form__submit-button');
+  const inputList = Array.from(formElement.querySelectorAll(validate.validationSettings.inputSelector));
+  const buttonElement = formElement.querySelector(validate.validationSettings.submitButtonSelector);
 
   if (!(validate.hasInvalidInput(inputList))) {
     inputList.forEach(inputElement => {
