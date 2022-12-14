@@ -1,3 +1,12 @@
+export const validationSettings = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__submit-button',
+  inactiveButtonClass: 'form__submit-button_disabled',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_visible'
+};
+
 export const showInputError = function (formElement, inputElement, errorMessage, validationSettings) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
@@ -76,13 +85,4 @@ export const toggleButtonState = function (inputList, buttonElement, validationS
   } else {
     activateButtonElement(buttonElement, validationSettings);
   }
-};
-
-export const validationSettings = {
-  formSelector: '.form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__submit-button',
-  inactiveButtonClass: 'form__submit-button_disabled',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_visible'
 };
