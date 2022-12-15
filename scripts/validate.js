@@ -25,13 +25,20 @@ export const hideInputError = function (formElement, inputElement, validationSet
   errorElement.textContent = '';
 }
 
-export const checkInputValidity = function (formElement, inputElement, validationSettings) {
-  if (!(inputElement.validity.valid)) {
+export const isInputValid = function (inputElement) {
+  if (inputElement.validity.valid) {
+    return true;
+  }
+  return false;
+}
+
+export const toggleInputErrorVisibility = function (formElement, inputElement, validationSettings) {
+  if (!(isInputValid(inputElement))) {
     showInputError(formElement, inputElement, inputElement.validationMessage, validationSettings);
   } else {
     hideInputError(formElement, inputElement, validationSettings);
   }
-}
+};
 
 export const setEventListeners = function (formElement, validationSettings) {
 
@@ -42,7 +49,7 @@ export const setEventListeners = function (formElement, validationSettings) {
 
   inputList.forEach(inputElement => {
     inputElement.addEventListener('input', () => {
-      checkInputValidity(formElement, inputElement, validationSettings);
+      toggleInputErrorVisibility(formElement, inputElement, validationSettings);
       toggleButtonState(inputList, buttonElement, validationSettings);
     });
 
