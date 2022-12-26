@@ -1,5 +1,32 @@
-import { initialCards } from './initial-cards.js';
+import { Card } from './Card.js';
 import * as validate from './validate.js';
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
 
 /*Variables*/
 
@@ -22,14 +49,11 @@ const inputPlaceLink = page.querySelector('#input-place-link');
 
 const profilePopup = page.querySelector('.popup_type_profile');
 const addPlacePopup = page.querySelector('.popup_type_add-place');
-const cardReviewPopup = page.querySelector('.popup_type_card-review');
+export const cardReviewPopup = page.querySelector('.popup_type_card-review');
 const popups = page.querySelectorAll('.popup');
 
-const cardReviewImg = page.querySelector('.card-review__img');
-const cardReviewTitle = page.querySelector('.card-review__title');
-
-const cardTemplate = page.querySelector('#card').content.querySelector('.card');
-const cardsListElement = page.querySelector('.cards__list');
+export const cardReviewImg = page.querySelector('.card-review__img');
+export const cardReviewTitle = page.querySelector('.card-review__title');
 
 /*Function's declaration*/
 
@@ -50,47 +74,9 @@ const handleEscapeKeydown = function (evt) {
   }
 }
 
-const openPopup = function (popup) {
+export const openPopup = function (popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', handleEscapeKeydown);
-}
-
-const toggleLikeButton = function (evt) {
-  const eventTarget = evt.target;
-  console.log(eventTarget);
-  eventTarget.classList.toggle('card__like-button_active');
-}
-
-const createPlaceElement = function (item) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardElementTitle = cardElement.querySelector('.card__title');
-  const cardElementImg = cardElement.querySelector('.card__img');
-  const likeButton = cardElement.querySelector('.card__like-button');
-  const trashButton = cardElement.querySelector('.card__trash-button');
-
-  cardElementTitle.textContent = item.name;
-  cardElementImg.src = item.link;
-  cardElementImg.alt = item.name;
-
-  likeButton.addEventListener('click', toggleLikeButton);
-  trashButton.addEventListener('click', removePlaceElement);
-  cardElementImg.addEventListener('click', openCardReview);
-
-  return cardElement;
-}
-
-const removePlaceElement = function (evt) {
-  const eventTarget = evt.target;
-  eventTarget.closest('.card').remove();
-};
-
-const openCardReview = function (evt) {
-  const eventTarget = evt.target;
-  cardReviewImg.src = eventTarget.src;
-  cardReviewImg.alt = eventTarget.alt;
-  const cardTitle = eventTarget.closest('.card').querySelector('.card__title');
-  cardReviewTitle.textContent = cardTitle.textContent;
-  openPopup(cardReviewPopup);
 }
 
 const handleProfileFormSubmit = function () {
@@ -106,10 +92,18 @@ const handleAddPlaceFormSubmit = function (evt) {
     link: inputPlaceLink.value
   };
 
-  const newCardElement = createPlaceElement(item);
-  cardsListElement.prepend(newCardElement);
+  const cardElement = renderCard(item);
+  document.querySelector('.cards__list').prepend(cardElement);
+
   closePopup(addPlacePopup);
   evt.target.reset();
+}
+
+const renderCard = item => {
+  const card = new Card(item);
+  const cardElement = card.generateCard();
+
+  return cardElement;
 }
 
 const checkInputsValidity = function (formElement) {
@@ -135,15 +129,12 @@ const checkFormValidity = function (formElement) {
 
 /*Global event-listeners*/
 
-profileFormElement.addEventListener('submit', handleProfileFormSubmit);
+profileFormElement.addEventListener('submit', () => {
+  handleProfileFormSubmit()
+});
 addPlaceFormElement.addEventListener('submit', handleAddPlaceFormSubmit);
 
 /*Cycles*/
-
-initialCards.forEach(function (element) {
-  const newCardElement = createPlaceElement(element);
-  cardsListElement.prepend(newCardElement);
-});
 
 popups.forEach(popup => {
   popup.addEventListener('mousedown', (evt) => {
@@ -169,6 +160,16 @@ addButton.addEventListener('click', () => {
   checkInputsValidity(addPlaceFormElement);
   openPopup(addPlacePopup);
 });
+
+const renderCards = (cardsList) => {
+  cardsList.forEach(item => {
+    const cardElement = renderCard(item);
+
+    document.querySelector('.cards__list').prepend(cardElement);
+  });
+}
+
+renderCards(initialCards);
 
 /*Validation*/
 
