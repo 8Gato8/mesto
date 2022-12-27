@@ -1,5 +1,5 @@
 import { Card } from './Card.js';
-import * as validate from './validate.js';
+import { profileFormValidationSettings, addPlaceFormValidationSettings, FormValidator } from './FormValidator.js';
 
 const initialCards = [
   {
@@ -32,8 +32,8 @@ const initialCards = [
 
 const page = document.querySelector('.page');
 
-const editButton = page.querySelector('.profile__edit-button');
-const addButton = page.querySelector('.profile__add-button');
+export const editButton = page.querySelector('.profile__edit-button');
+export const addButton = page.querySelector('.profile__add-button');
 
 const profileName = page.querySelector('.profile__name');
 const profileJob = page.querySelector('.profile__job');
@@ -52,22 +52,27 @@ const addPlacePopup = page.querySelector('.popup_type_add-place');
 export const cardReviewPopup = page.querySelector('.popup_type_card-review');
 const popups = page.querySelectorAll('.popup');
 
+const forms = page.querySelectorAll('.form');
+
 export const cardReviewImg = page.querySelector('.card-review__img');
 export const cardReviewTitle = page.querySelector('.card-review__title');
 
 /*Function's declaration*/
 
-const fillInputFields = function () {
+export const fillInputFields = function () {
+
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
 }
 
 const closePopup = function (popup) {
+
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', handleEscapeKeydown);
 };
 
 const handleEscapeKeydown = function (evt) {
+
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
@@ -75,11 +80,13 @@ const handleEscapeKeydown = function (evt) {
 }
 
 export const openPopup = function (popup) {
+
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', handleEscapeKeydown);
 }
 
 const handleProfileFormSubmit = function () {
+
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
 
@@ -87,6 +94,7 @@ const handleProfileFormSubmit = function () {
 }
 
 const handleAddPlaceFormSubmit = function (evt) {
+
   const item = {
     name: inputPlaceName.value,
     link: inputPlaceLink.value
@@ -100,43 +108,24 @@ const handleAddPlaceFormSubmit = function (evt) {
 }
 
 const renderCard = item => {
-  const card = new Card(item);
+
+  const card = new Card(item, '#card');
   const cardElement = card.generateCard();
 
   return cardElement;
 }
 
-const checkInputsValidity = function (formElement) {
-
-  const inputList = Array.from(formElement.querySelectorAll(validate.validationSettings.inputSelector));
-  const buttonElement = formElement.querySelector(validate.validationSettings.submitButtonSelector);
-
-  validate.toggleButtonState(inputList, buttonElement, validate.validationSettings);
-};
-
-const checkFormValidity = function (formElement) {
-
-  const inputList = Array.from(formElement.querySelectorAll(validate.validationSettings.inputSelector));
-  const buttonElement = formElement.querySelector(validate.validationSettings.submitButtonSelector);
-
-  if (!(validate.hasInvalidInput(inputList))) {
-    inputList.forEach(inputElement => {
-      validate.hideInputError(formElement, inputElement, validate.validationSettings);
-      validate.activateButtonElement(buttonElement, validate.validationSettings);
-    });
-  }
-}
-
-/*Global event-listeners*/
+/*Event-listeners*/
 
 profileFormElement.addEventListener('submit', () => {
-  handleProfileFormSubmit()
+
+  handleProfileFormSubmit();
 });
+
 addPlaceFormElement.addEventListener('submit', handleAddPlaceFormSubmit);
 
-/*Cycles*/
-
 popups.forEach(popup => {
+
   popup.addEventListener('mousedown', (evt) => {
 
     if (evt.target.classList.contains('popup_opened')) {
@@ -151,21 +140,24 @@ popups.forEach(popup => {
 });
 
 editButton.addEventListener('click', () => {
+
   fillInputFields();
-  checkFormValidity(profileFormElement);
   openPopup(profilePopup);
 });
 
 addButton.addEventListener('click', () => {
-  checkInputsValidity(addPlaceFormElement);
+
   openPopup(addPlacePopup);
 });
 
+/*Render Cards*/
+
 const renderCards = (cardsList) => {
+
   cardsList.forEach(item => {
     const cardElement = renderCard(item);
 
-    document.querySelector('.cards__list').prepend(cardElement);
+    page.querySelector('.cards__list').prepend(cardElement);
   });
 }
 
@@ -174,4 +166,14 @@ renderCards(initialCards);
 /*Validation*/
 
 fillInputFields();
-validate.enableValidation(validate.validationSettings);
+
+forms.forEach(form => {
+
+  const formElement = (form === profileFormElement)
+    ? new FormValidator(profileFormValidationSettings, '#profile-form')
+    : new FormValidator(addPlaceFormValidationSettings, '#add-place-form');
+
+  formElement.enableValidation();
+});
+
+

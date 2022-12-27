@@ -2,15 +2,18 @@ import { cardReviewImg, cardReviewPopup, cardReviewTitle, openPopup } from './in
 
 export class Card {
 
-  constructor(data) {
+  constructor(data, selector) {
+
     this._name = data.name;
     this._link = data.link;
     this._alt = data.name;
+    this._selector = selector;
   }
 
   _getTemplate() {
+
     const cardElement = document
-      .querySelector('#card')
+      .querySelector(this._selector)
       .content
       .querySelector('.card')
       .cloneNode(true);
@@ -19,6 +22,7 @@ export class Card {
   }
 
   generateCard() {
+
     this._element = this._getTemplate();
 
     this._setEventListeners();
@@ -31,6 +35,7 @@ export class Card {
   }
 
   _setEventListeners() {
+
     this._element.querySelector('.card__like-button').addEventListener('click', () => {
       this._toggleLikeButton();
     })
@@ -45,14 +50,17 @@ export class Card {
   }
 
   _toggleLikeButton() {
+
     this._element.querySelector('.card__like-button').classList.toggle('card__like-button_active');
   }
 
   _removePlaceElement() {
+
     this._element.remove();
   }
 
   _openCardReview() {
+
     cardReviewImg.src = this._link;
     cardReviewImg.alt = this._alt;
     cardReviewTitle.textContent = this._name;
