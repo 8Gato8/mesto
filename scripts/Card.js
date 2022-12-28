@@ -1,4 +1,6 @@
-import { cardReviewImg, cardReviewPopup, cardReviewTitle, openPopup } from './index.js';
+import { cardReviewImg, cardReviewPopup, cardReviewTitle, cardElementClassSelector, cardImgSelector, cardTitleSelector, cardLikeButtonSelector, cardLikeButtonActiveClass, cardTrashButtonSelector } from './constants.js';
+
+import { openPopup } from './index.js';
 
 export class Card {
 
@@ -15,7 +17,7 @@ export class Card {
     const cardElement = document
       .querySelector(this._selector)
       .content
-      .querySelector('.card')
+      .querySelector(cardElementClassSelector)
       .cloneNode(true);
 
     return cardElement;
@@ -27,31 +29,31 @@ export class Card {
 
     this._setEventListeners();
 
-    this._element.querySelector('.card__img').src = this._link;
-    this._element.querySelector('.card__title').textContent = this._name;
-    this._element.querySelector('.card__img').alt = this._alt;
+    this._element.querySelector(cardImgSelector).src = this._link;
+    this._element.querySelector(cardTitleSelector).textContent = this._name;
+    this._element.querySelector(cardImgSelector).alt = this._alt;
 
     return this._element;
   }
 
   _setEventListeners() {
 
-    this._element.querySelector('.card__like-button').addEventListener('click', () => {
+    this._element.querySelector(cardLikeButtonSelector).addEventListener('click', () => {
       this._toggleLikeButton();
     })
 
-    this._element.querySelector('.card__trash-button').addEventListener('click', () => {
+    this._element.querySelector(cardTrashButtonSelector).addEventListener('click', () => {
       this._removePlaceElement();
     })
 
-    this._element.querySelector('.card__img').addEventListener('click', () => {
+    this._element.querySelector(cardImgSelector).addEventListener('click', () => {
       this._openCardReview();
     })
   }
 
   _toggleLikeButton() {
 
-    this._element.querySelector('.card__like-button').classList.toggle('card__like-button_active');
+    this._element.querySelector(cardLikeButtonSelector).classList.toggle(cardLikeButtonActiveClass);
   }
 
   _removePlaceElement() {

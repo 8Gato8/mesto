@@ -1,24 +1,4 @@
-import { addButton, editButton } from './index.js';
-
-export const profileFormValidationSettings = {
-
-  formSelector: '#profile-form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__submit-button',
-  inactiveButtonClass: 'form__submit-button_disabled',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_visible'
-};
-
-export const addPlaceFormValidationSettings = {
-
-  formSelector: '#add-place-form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__submit-button',
-  inactiveButtonClass: 'form__submit-button_disabled',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_visible'
-};
+import { addButton, editButton, addPlaceFormElement } from './constants.js';
 
 export class FormValidator {
 
@@ -70,7 +50,7 @@ export class FormValidator {
 
   _checkFormValidity(formElement, inputList, buttonElement) {
 
-    if (formElement.id === 'add-place-form') {
+    if (formElement === addPlaceFormElement) {
       this._toggleButtonState(inputList, buttonElement);
       return;
     }
