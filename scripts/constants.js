@@ -66,8 +66,8 @@ export const profilePopup = page.querySelector('.popup_type_profile');
 export const addPlacePopup = page.querySelector('.popup_type_add-place');
 export const cardReviewPopup = page.querySelector('.popup_type_card-review');
 export const popups = page.querySelectorAll('.popup');
-export const openedPopup = page.querySelector('.popup_opened');
 export const openedPopupClass = ('popup_opened');
+export const openedPopupSelector = ('.popup_opened');
 
 export const forms = page.querySelectorAll('.form');
 

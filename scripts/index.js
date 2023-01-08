@@ -2,7 +2,7 @@ import { Card } from './Card.js';
 
 import { FormValidator } from './FormValidator.js';
 
-import { initialCards, editButton, addButton, closeButtonClass, profileName, profileJob, profileFormElement, addPlaceFormElement, profileFormSelector, addPlaceFormSelector, inputName, inputJob, inputPlaceName, inputPlaceLink, profilePopup, addPlacePopup, popups, openedPopup, openedPopupClass, forms, escapeString, cardsList, cardElementIdSelector, formValidationSettings } from './constants.js';
+import { initialCards, page, editButton, addButton, closeButtonClass, profileName, profileJob, profileFormElement, addPlaceFormElement, profileFormSelector, addPlaceFormSelector, inputName, inputJob, inputPlaceName, inputPlaceLink, profilePopup, addPlacePopup, popups, openedPopupClass, openedPopupSelector, forms, escapeString, cardsList, cardElementIdSelector, formValidationSettings } from './constants.js';
 
 /*Function's declaration*/
 
@@ -21,12 +21,11 @@ const closePopup = function (popup) {
 const handleEscapeKeydown = function (evt) {
 
   if (evt.key === escapeString) {
-    closePopup(openedPopup);
+    closePopup(page.querySelector(openedPopupSelector));
   }
 }
 
 export const openPopup = function (popup) {
-
   popup.classList.add(openedPopupClass);
   document.addEventListener('keydown', handleEscapeKeydown);
 }
