@@ -1,8 +1,10 @@
-import { Card } from './Card.js';
+import '../pages/index.css';
 
-import { FormValidator } from './FormValidator.js';
+import { Card } from '../scripts/Card.js';
 
-import { initialCards, page, editButton, addButton, closeButtonClass, profileName, profileJob, profileFormElement, addPlaceFormElement, profileFormSelector, addPlaceFormSelector, inputName, inputJob, inputPlaceName, inputPlaceLink, profilePopup, addPlacePopup, popups, openedPopupClass, openedPopupSelector, forms, escapeString, cardsList, cardElementIdSelector, formValidationSettings } from './constants.js';
+import { FormValidator } from '../scripts/FormValidator.js';
+
+import { initialCards, page, editButton, addButton, closeButtonClass, profileName, profileJob, profileFormElement, addPlaceFormElement, profileFormSelector, addPlaceFormSelector, inputName, inputJob, inputPlaceName, inputPlaceLink, profilePopup, addPlacePopup, popups, openedPopupClass, openedPopupSelector, forms, escapeString, cardsList, cardElementIdSelector, formValidationSettings } from '../scripts/constants.js';
 
 /*Function's declaration*/
 
