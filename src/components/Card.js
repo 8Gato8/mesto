@@ -4,12 +4,13 @@ import { openPopup } from '../index.js';
 
 export class Card {
 
-  constructor(data, selector) {
+  constructor(data, selector, handleCardClick) {
 
     this._name = data.name;
     this._link = data.link;
     this._alt = data.name;
     this._selector = selector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -46,9 +47,11 @@ export class Card {
       this._removePlaceElement();
     })
 
-    this._element.querySelector(cardImgSelector).addEventListener('click', () => {
+    this.handleCardClick();
+
+    /* this._element.querySelector(cardImgSelector).addEventListener('click', () => {
       this._openCardReview();
-    })
+    }) */
   }
 
   _toggleLikeButton() {
