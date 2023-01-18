@@ -1,16 +1,16 @@
-import { cardReviewImg, cardReviewPopup, cardReviewTitle, cardElementClassSelector, cardImgSelector, cardTitleSelector, cardLikeButtonSelector, cardLikeButtonActiveClass, cardTrashButtonSelector } from './constants.js';
+import { cardElementClassSelector, cardImgSelector, cardTitleSelector, cardLikeButtonSelector, cardLikeButtonActiveClass, cardTrashButtonSelector } from './constants.js';
 
-import { openPopup } from '../index.js';
+/* import { openPopup } from '../index.js'; */
 
 export class Card {
 
-  constructor(data, selector, handleCardClick) {
+  constructor({ place, link }, { handleCardClick }, selector) {
 
-    this._name = data.name;
-    this._link = data.link;
-    this._alt = data.name;
-    this._selector = selector;
+    this._name = place;
+    this._link = link;
+    this._alt = place;
     this._handleCardClick = handleCardClick;
+    this._selector = selector;
   }
 
   _getTemplate() {
@@ -47,11 +47,9 @@ export class Card {
       this._removePlaceElement();
     })
 
-    this.handleCardClick();
-
-    /* this._element.querySelector(cardImgSelector).addEventListener('click', () => {
-      this._openCardReview();
-    }) */
+    this._element.querySelector(cardImgSelector).addEventListener('click', () => {
+      this._handleCardClick();
+    })
   }
 
   _toggleLikeButton() {
@@ -62,14 +60,6 @@ export class Card {
   _removePlaceElement() {
 
     this._element.remove();
-  }
-
-  _openCardReview() {
-
-    cardReviewImg.src = this._link;
-    cardReviewImg.alt = this._alt;
-    cardReviewTitle.textContent = this._name;
-    openPopup(cardReviewPopup);
   }
 }
 

@@ -1,15 +1,17 @@
 import { Popup } from './Popup.js';
+import { cardReviewSelector, cardReviewTitleSelector, cardReviewImgSelector, } from './constants.js';
 
 export class PopupWithImage extends Popup {
 
-  constructor({ name, link }, popupSelector) {
+  constructor({ place, link }, popupSelector) {
     super(popupSelector);
 
-    this._cardsContainer = super._popup.querySelector('.card-review');
-    this._image = this._cardsContainer.querySelector('.card-review__img');
+    this._cardsContainer = this._popup.querySelector(cardReviewSelector);
+    this._imageTitle = this._cardsContainer.querySelector(cardReviewTitleSelector);
+    this._image = this._cardsContainer.querySelector(cardReviewImgSelector);
     this._image.src = link;
-    this._image.alt = name;
-    this._image.textContent = name;
+    this._image.alt = place;
+    this._imageTitle.textContent = place;
   }
 
   open() {

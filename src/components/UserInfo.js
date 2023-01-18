@@ -1,21 +1,26 @@
+import { profileName, profileJob } from './constants.js';
+
 export class UserInfo {
 
   constructor({ userNameSelector, userJobSelector }) {
-    this._userName = document.querySelector(userNameSelector).textContent;
-    this._userJob = document.querySelector(userJobSelector).textContent;
+    this._userName = document.querySelector(userNameSelector);
+    this._userJob = document.querySelector(userJobSelector);
   }
 
   getUserInfo() {
+
     this._userInfo = {
-      name: this._userName,
-      job: this._userJob
+      name: profileName,
+      job: profileJob
     }
 
     return this._userInfo;
   }
 
   setUserInfo({ name, job }) {
-    this._userName = name;
-    this._userJob = job;
+    this._userName.textContent = name;
+    this._userJob.textContent = job;
   }
+
+
 }
