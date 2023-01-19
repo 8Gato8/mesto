@@ -1,13 +1,13 @@
-import './pages/index.css';
+import './index.css';
 
-import { Card } from './components/Card.js';
-import { PopupWithForm } from './components/PopupWithForm.js';
-import { PopupWithImage } from './components/PopupWithImage.js';
-import { Section } from './components/Section.js';
-import { UserInfo } from './components/UserInfo.js';
-import { FormValidator } from './components/FormValidator.js';
+import { Card } from '../components/Card.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { Section } from '../components/Section.js';
+import { UserInfo } from '../components/UserInfo.js';
+import { FormValidator } from '../components/FormValidator.js';
 
-import { initialCards, editButton, addButton, profileNameSelector, profileJobSelector, profileFormId, addPlaceFormId, inputName, inputJob, profilePopupSelector, addPlacePopupSelector, cardReviewPopupSelector, cardsList, cardsListSelector, cardElementIdSelector, formValidationSettings } from './utils/constants.js';
+import { initialCards, editButton, addButton, profileNameSelector, profileJobSelector, profileFormId, addPlaceFormId, inputName, inputJob, profilePopupSelector, addPlacePopupSelector, cardReviewPopupSelector, cardsList, cardsListSelector, cardElementIdSelector, formValidationSettings } from '../utils/constants.js';
 
 
 /* Создание классов */
