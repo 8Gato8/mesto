@@ -32,13 +32,9 @@ export const addButton = page.querySelector('.profile__add-button');
 export const closeButtonClass = ('close-button');
 export const closeButtonSelector = ('.close-button');
 
-export const profileName = page.querySelector('.profile__name');
-export const profileJob = page.querySelector('.profile__job');
 export const profileNameSelector = ('.profile__name');
 export const profileJobSelector = ('.profile__job');
 
-export const profileFormElement = page.querySelector('#profile-form');
-export const addPlaceFormElement = page.querySelector('#add-place-form');
 export const profileFormId = ('#profile-form');
 export const addPlaceFormId = ('#add-place-form');
 
@@ -69,7 +65,6 @@ export const cardReviewPopupSelector = ('.popup_type_card-review');
 
 export const openedPopupClass = ('popup_opened');
 export const formSelector = ('.form');
-export const forms = page.querySelectorAll('.form');
 
 export const cardReviewSelector = ('.card-review');
 export const cardReviewImgSelector = ('.card-review__img');

@@ -1,5 +1,3 @@
-import { profileName, profileJob } from './constants.js';
-
 export class UserInfo {
 
   constructor({ userNameSelector, userJobSelector }) {
@@ -10,8 +8,8 @@ export class UserInfo {
   getUserInfo() {
 
     this._userInfo = {
-      name: profileName,
-      job: profileJob
+      name: this._userName,
+      job: this._userJob
     }
 
     return this._userInfo;

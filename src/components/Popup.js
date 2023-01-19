@@ -1,20 +1,24 @@
-import { openedPopupClass, closeButtonClass, closeButtonSelector, escapeString } from './constants.js';
+import { openedPopupClass, closeButtonClass, closeButtonSelector, escapeString } from '../utils/constants.js';
 
 export class Popup {
 
   constructor(popupSelector) {
+
     this._popup = document.querySelector(popupSelector);
     this._closeButton = this._popup.querySelector(closeButtonSelector);
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   open() {
+
     this._popup.classList.add(openedPopupClass);
-    document.addEventListener('keydown', this._handleEscClose.bind(this));
+    document.addEventListener('keydown', this._handleEscClose);
   }
 
   close() {
+
     this._popup.classList.remove(openedPopupClass);
-    document.removeEventListener('keydown', this._handleEscClose.bind(this));
+    document.removeEventListener('keydown', this._handleEscClose);
   }
 
   setEventListeners() {
@@ -29,6 +33,7 @@ export class Popup {
   }
 
   _handleEscClose(evt) {
+
     if (evt.key === escapeString) {
       this.close();
     }

@@ -1,6 +1,4 @@
-import { cardElementClassSelector, cardImgSelector, cardTitleSelector, cardLikeButtonSelector, cardLikeButtonActiveClass, cardTrashButtonSelector } from './constants.js';
-
-/* import { openPopup } from '../index.js'; */
+import { cardElementClassSelector, cardImgSelector, cardTitleSelector, cardLikeButtonSelector, cardLikeButtonActiveClass, cardTrashButtonSelector } from '../utils/constants.js';
 
 export class Card {
 
