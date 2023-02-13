@@ -1,4 +1,4 @@
-import { openedPopupClass, closeButtonClass, closeButtonSelector, escapeString } from '../utils/constants.js';
+import { openedPopupClass, closeButtonClass, closeButtonSelector, submitButtonSelector, escapeString } from '../utils/constants.js';
 
 export class Popup {
 
@@ -7,6 +7,7 @@ export class Popup {
     this._popup = document.querySelector(popupSelector);
     this._closeButton = this._popup.querySelector(closeButtonSelector);
     this._handleEscClose = this._handleEscClose.bind(this);
+    this.submitButton = this._popup.querySelector(submitButtonSelector);
   }
 
   open() {

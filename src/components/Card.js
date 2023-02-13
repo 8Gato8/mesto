@@ -1,14 +1,21 @@
-import { cardElementClassSelector, cardImgSelector, cardTitleSelector, cardLikeButtonSelector, cardLikeButtonActiveClass, cardTrashButtonSelector } from '../utils/constants.js';
+import { cardElementClassSelector, cardImgSelector, cardTitleSelector, cardLikeButtonSelector, cardLikeButtonActiveClass, cardLikeCounterSelector, cardTrashButtonSelector } from '../utils/constants.js';
 
 export class Card {
 
-  constructor({ place, link }, { handleCardClick }, selector) {
+  constructor({ name, link, likes, owner, _id }, userObj, { handleCardClick, handleTrashButtonClick, handleLikeClick }, selector) {
 
-    this._name = place;
+    this._name = name;
     this._link = link;
-    this._alt = place;
+    this._alt = name;
+    this._likes = likes;
     this._handleCardClick = handleCardClick;
+    this._handleTrashButtonClick = handleTrashButtonClick;
+    this._handleLikeClick = handleLikeClick;
     this._selector = selector;
+    this._ownerId = owner._id;
+    this._id = _id;
+    this._userId = userObj._id;
+    this._amIOwner = (this._ownerId === this._userId);
   }
 
   _getTemplate() {
@@ -19,6 +26,9 @@ export class Card {
       .querySelector(cardElementClassSelector)
       .cloneNode(true);
 
+    if (this._amIOwner) {
+      cardElement.insertAdjacentHTML('beforeEnd', '<button class="card__trash-button" type="button"></button>');
+    }
     return cardElement;
   }
 
@@ -31,32 +41,43 @@ export class Card {
     this._element.querySelector(cardImgSelector).src = this._link;
     this._element.querySelector(cardTitleSelector).textContent = this._name;
     this._element.querySelector(cardImgSelector).alt = this._alt;
+    this.setLikeCounter();
 
     return this._element;
+  }
+
+  checkLikeStatus() {
+    return this._likes.some(item => item._id === this._userId)
+  }
+
+  setLikeCounter() {
+    this._element.querySelector(cardLikeCounterSelector).textContent = this._likes.length;
   }
 
   _setEventListeners() {
 
     this._element.querySelector(cardLikeButtonSelector).addEventListener('click', () => {
-      this._toggleLikeButton();
+      this.toggleLikeButton();
+      this._handleLikeClick(this);
     })
 
-    this._element.querySelector(cardTrashButtonSelector).addEventListener('click', () => {
-      this._removePlaceElement();
-    })
+    if (this._amIOwner) {
+
+      this._element.querySelector(cardTrashButtonSelector).addEventListener('click', () => {
+        this._handleTrashButtonClick(this);
+      })
+    }
 
     this._element.querySelector(cardImgSelector).addEventListener('click', () => {
       this._handleCardClick();
     })
   }
 
-  _toggleLikeButton() {
-
+  toggleLikeButton() {
     this._element.querySelector(cardLikeButtonSelector).classList.toggle(cardLikeButtonActiveClass);
   }
 
-  _removePlaceElement() {
-
+  removePlaceElement() {
     this._element.remove();
   }
 }

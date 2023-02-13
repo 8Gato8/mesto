@@ -11,11 +11,11 @@ export class PopupWithImage extends Popup {
     this._image = this._cardsContainer.querySelector(cardReviewImgSelector);
   }
 
-  open({ place, link }) {
+  open({ name, link }) {
 
     this._image.src = link;
-    this._image.alt = place;
-    this._imageTitle.textContent = place;
+    this._image.alt = name;
+    this._imageTitle.textContent = name;
 
     super.open();
   }
