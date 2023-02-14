@@ -7,12 +7,16 @@ export class Api {
 
   }
 
+  _checkResponse(res) {
+    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+  }
+
   getBackendUserInfo() {
 
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
+      .then(this._checkResponse);
   }
 
   getInitialCards() {
@@ -20,7 +24,7 @@ export class Api {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
+      .then(this._checkResponse);
   }
 
   editUserInfo(newName, newJob) {
@@ -33,7 +37,7 @@ export class Api {
         about: newJob
       })
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
+      .then(this._checkResponse);
   }
 
   postNewCard({ name, link }) {
@@ -46,7 +50,7 @@ export class Api {
         link,
       })
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
+      .then(this._checkResponse);
   }
 
   deleteCard(cardId) {
@@ -55,7 +59,7 @@ export class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
+      .then(this._checkResponse);
   }
 
   likeCard(cardId) {
@@ -64,7 +68,7 @@ export class Api {
       method: 'PUT',
       headers: this._headers
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
+      .then(this._checkResponse);
   }
 
   deleteLike(cardId) {
@@ -73,7 +77,7 @@ export class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
+      .then(this._checkResponse);
   }
 
   updateAvatar(avatar) {
@@ -84,6 +88,6 @@ export class Api {
         avatar,
       })
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
+      .then(this._checkResponse);
   }
 }

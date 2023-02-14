@@ -9,7 +9,7 @@ import { Section } from '../components/Section.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { FormValidator } from '../components/FormValidator.js';
 
-import { editButton, addButton, updateAvatarButton, profileNameSelector, profileJobSelector, profileAvatarSelector, profileFormId, addPlaceFormId, updateAvatarFormId, inputName, inputJob, profilePopupSelector, addPlacePopupSelector, confirmationPopupSelector, updateProfileSelector, cardReviewPopupSelector, cardsList, cardsListSelector, cardElementIdSelector, formValidationSettings } from '../utils/constants.js';
+import { editButton, addButton, updateAvatarButton, profileNameSelector, profileJobSelector, profileAvatarSelector, profileFormId, addPlaceFormId, updateAvatarFormId, profilePopupSelector, addPlacePopupSelector, confirmationPopupSelector, updateProfileSelector, cardReviewPopupSelector, cardsListSelector, cardElementIdSelector, formValidationSettings } from '../utils/constants.js';
 
 /* Класс Api для взаимодействия с сервером */
 
@@ -25,6 +25,7 @@ const api = new Api({
 
 let userObj;
 let initialCard;
+let cardList;
 
 /* Рендер карточек и информации о пользователе */
 
@@ -35,12 +36,14 @@ Promise.all([api.getBackendUserInfo(), api.getInitialCards()])
     const user = data[0];
     const card = data[1];
 
-    const { name, job, avatar } = userInfo.getUserInfo();
+    const name = user.name;
+    const job = user.about;
+    const avatar = user.avatar;
+    const userId = user._id;
 
-    name.textContent = user.name;
-    job.textContent = user.about;
-    avatar.src = user.avatar;
-
+    userInfo.setUserInfo({ name, job });
+    userInfo.setUserAvatar(avatar);
+    userInfo.setUserId(userId);
 
     userObj = user;
 
@@ -61,7 +64,9 @@ Promise.all([api.getBackendUserInfo(), api.getInitialCards()])
 
       cardsListSelector
     )
+
     initialCardList.renderItems();
+    cardList = initialCardList;
   })
   .catch((err) => {
     console.log(err);
@@ -86,17 +91,17 @@ const popupEditProfile = new PopupWithForm(
 
       popupEditProfile.submitButton.textContent = 'Сохранение...';
 
-      userInfo.setUserInfo({ name, job });
-
       api.editUserInfo(name, job)
+        .then(() => {
+          userInfo.setUserInfo({ name, job });
+          popupEditProfile.close();
+        })
         .catch((err) => {
           console.log(err);
         })
         .finally(() => {
           popupEditProfile.submitButton.textContent = 'Сохранить';
         });
-
-      popupEditProfile.close();
     }
   }
 );
@@ -117,7 +122,7 @@ const popupAddCard = new PopupWithForm(
           newCard._id = data._id;
         })
         .then(() => {
-          cardsList.prepend(newCardElement);
+          cardList.addItem(newCardElement);
           popupAddCard.close();
         })
         .catch((err) => {
@@ -202,11 +207,9 @@ const createCard = ({ name, link, likes, owner, _id }) => {
             .then((data) => {
               cardObj._likes = data.likes;
             })
-            .catch((err) => {
-              console.log(err);
-            })
             .then(() => {
               cardObj.setLikeCounter();
+              cardObj.toggleLikeButton();
             })
             .catch((err) => {
               console.log(err);
@@ -216,11 +219,9 @@ const createCard = ({ name, link, likes, owner, _id }) => {
             .then((data) => {
               cardObj._likes = data.likes;
             })
-            .catch((err) => {
-              console.log(err);
-            })
             .then(() => {
               cardObj.setLikeCounter();
+              cardObj.toggleLikeButton();
             })
             .catch((err) => {
               console.log(err);
@@ -247,10 +248,9 @@ popupUpdateAvatar.setEventListeners();
 
 editButton.addEventListener('click', () => {
 
-  const { name, job } = userInfo.getUserInfo();
+  const data = userInfo.getUserInfo();
 
-  inputName.value = name.textContent;
-  inputJob.value = job.textContent;
+  popupEditProfile.setInputValues(data);
 
   validatorEditProfile.checkFormValidity();
 

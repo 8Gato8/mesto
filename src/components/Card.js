@@ -35,13 +35,19 @@ export class Card {
   generateCard() {
 
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector(cardImgSelector);
+    this._cardTitle = this._element.querySelector(cardTitleSelector);
+    this._cardLikeCounter = this._element.querySelector(cardLikeCounterSelector);
+    this._cardLikeButton = this._element.querySelector(cardLikeButtonSelector);
+    this._cardTrashButton = this._element.querySelector(cardTrashButtonSelector);
+
+
+    this._cardImage.src = this._link;
+    this._cardTitle.textContent = this._name;
+    this._cardImage.alt = this._alt;
+    this.setLikeCounter();
 
     this._setEventListeners();
-
-    this._element.querySelector(cardImgSelector).src = this._link;
-    this._element.querySelector(cardTitleSelector).textContent = this._name;
-    this._element.querySelector(cardImgSelector).alt = this._alt;
-    this.setLikeCounter();
 
     return this._element;
   }
@@ -51,30 +57,29 @@ export class Card {
   }
 
   setLikeCounter() {
-    this._element.querySelector(cardLikeCounterSelector).textContent = this._likes.length;
+    this._cardLikeCounter.textContent = this._likes.length;
   }
 
   _setEventListeners() {
 
-    this._element.querySelector(cardLikeButtonSelector).addEventListener('click', () => {
-      this.toggleLikeButton();
+    this._cardLikeButton.addEventListener('click', () => {
       this._handleLikeClick(this);
     })
 
     if (this._amIOwner) {
 
-      this._element.querySelector(cardTrashButtonSelector).addEventListener('click', () => {
+      this._cardTrashButton.addEventListener('click', () => {
         this._handleTrashButtonClick(this);
       })
     }
 
-    this._element.querySelector(cardImgSelector).addEventListener('click', () => {
+    this._cardImage.addEventListener('click', () => {
       this._handleCardClick();
     })
   }
 
   toggleLikeButton() {
-    this._element.querySelector(cardLikeButtonSelector).classList.toggle(cardLikeButtonActiveClass);
+    this._cardLikeButton.classList.toggle(cardLikeButtonActiveClass);
   }
 
   removePlaceElement() {

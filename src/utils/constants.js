@@ -20,7 +20,6 @@ export const inactiveButtonClass = ('form__submit-button_disabled');
 export const inputErrorClass = ('form__input_type_error');
 export const errorClass = ('form__input-error_visible');
 
-export const cardsList = page.querySelector('.cards__list');
 export const cardsListSelector = ('.cards__list');
 
 export const cardElementIdSelector = ('#card');
@@ -31,9 +30,6 @@ export const cardLikeButtonSelector = ('.card__like-button');
 export const cardLikeButtonActiveClass = ('card__like-button_active');
 export const cardLikeCounterSelector = ('.card__like-counter');
 export const cardTrashButtonSelector = ('.card__trash-button');
-
-export const inputName = page.querySelector('#input-name');
-export const inputJob = page.querySelector('#input-job');
 
 export const profilePopupSelector = ('.popup_type_profile');
 export const addPlacePopupSelector = ('.popup_type_add-place');

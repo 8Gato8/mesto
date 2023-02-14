@@ -9,9 +9,9 @@ export class UserInfo {
   getUserInfo() {
 
     this._userInfo = {
-      name: this._userName,
-      job: this._userJob,
-      avatar: this._userAvatar,
+      name: this._userName.textContent,
+      job: this._userJob.textContent,
+      avatar: this._userAvatar.src,
     }
 
     return this._userInfo;
@@ -27,4 +27,7 @@ export class UserInfo {
     this._userAvatar.src = avatar;
   }
 
+  setUserId(id) {
+    this._userId = id;
+  }
 }
