@@ -24,7 +24,7 @@ const api = new Api({
 /* Глобальные переменные */
 
 let userObj;
-let initialCard;
+let cardContainerObj;
 let cardList;
 
 /* Рендер карточек и информации о пользователе */
@@ -141,11 +141,11 @@ const popupConfirmation = new PopupConfirmation(
   {
     handleFormSubmit: () => {
 
-      const cardId = initialCard._id;
+      const cardId = cardContainerObj._id;
 
       api.deleteCard(cardId)
         .then(() => {
-          initialCard.removePlaceElement();
+          cardContainerObj.removePlaceElement();
           popupConfirmation.close();
         })
         .catch((err) => {
@@ -196,7 +196,7 @@ const createCard = ({ name, link, likes, owner, _id }) => {
 
       handleTrashButtonClick: (cardObj) => {
 
-        initialCard = cardObj;
+        cardContainerObj = cardObj;
         popupConfirmation.open();
       },
 
