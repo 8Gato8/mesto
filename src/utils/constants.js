@@ -48,7 +48,6 @@ export const escapeString = 'Escape';
 
 export const formValidationSettings = {
 
-  formSelector: profileFormId ?? addPlaceFormId,
   inputSelector,
   submitButtonSelector,
   inactiveButtonClass,
