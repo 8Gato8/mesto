@@ -4,7 +4,7 @@
 
 ## [Демонстрация сайта](https://8gato8.github.io/mesto/)
 
-![Превью проекта](./frontend/src/images/mesto.jpg)
+![Превью проекта](./src/images/mesto.jpg)
 
 **Использованы следующие методы и технологии:**
 
