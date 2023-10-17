@@ -4,7 +4,13 @@
 
 ## [Демонстрация сайта](https://8gato8.github.io/mesto/)
 
-![Превью проекта](./src/images/mesto.jpg)
+</br>
+
+<div align="center">
+  <img src="./src/images/mesto.jpg">
+</div>
+
+</br>
 
 **Функционал:**
 
